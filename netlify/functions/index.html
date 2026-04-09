@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER — Your Wardrobe, Styled.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-bg"><div class="auth-grain"></div></div>
+    <div class="auth-card">
+      <div class="auth-logo">ATELIER</div>
+      <div class="auth-tagline">Your wardrobe, styled by AI.</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="switchAuthTab('signup')">Create Account</button>
+      </div>
+      <div id="auth-error" class="auth-error" style="display:none;"></div>
+      <div id="tab-login" class="auth-form active">
+        <div class="field-group"><label>Email</label><input type="email" id="login-email" placeholder="you@email.com" autocomplete="email"></div>
+        <div class="field-group"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password"></div>
+        <button class="btn-auth" onclick="handleLogin()">Sign In →</button>
+      </div>
+      <div id="tab-signup" class="auth-form">
+        <div class="field-group"><label>Email</label><input type="email" id="signup-email" placeholder="you@email.com" autocomplete="email"></div>
+        <div class="field-group"><label>Password</label><input type="password" id="signup-password" placeholder="Min. 6 characters" autocomplete="new-password"></div>
+        <div class="field-group"><label>Confirm Password</label><input type="password" id="signup-confirm" placeholder="••••••••" autocomplete="new-password"></div>
+        <button class="btn-auth" onclick="handleSignup()">Create Account →</button>
+      </div>
+    </div>
+  </div>
+  <div id="app" class="app" style="display:none;">
+    <header>
+      <div class="logo">ATELIER <span>/ WARDROBE</span></div>
+      <nav>
+        <button class="active" onclick="showView('wardrobe', event)">Wardrobe</button>
+        <button onclick="showView('outfit', event)">Outfit Builder</button>
+      </nav>
+      <div class="header-right">
+        <span class="user-email" id="user-email-display"></span>
+        <button class="btn-signout" onclick="handleSignOut()">Sign out</button>
+      </div>
+    </header>
+    <main>
+      <div class="view active" id="view-wardrobe">
+        <div class="wardrobe-header">
+          <div class="page-title">MY WARDROBE</div>
+          <div class="page-sub">Build your collection — then let AI style it.</div>
+        </div>
+        <div class="add-panel">
+          <h3>+ ADD CLOTHING ITEM</h3>
+          <div class="input-tabs">
+            <button class="input-tab active" onclick="switchInputTab('desc', event)">Description</button>
+            <button class="input-tab" onclick="switchInputTab('url', event)">Product URL</button>
+            <button class="input-tab" onclick="switchInputTab('photo', event)">Upload Photo</button>
+          </div>
+          <div class="input-section active" id="tab-desc">
+            <div class="form-row">
+              <div class="form-group"><label>Item name / description</label><input type="text" id="desc-name" placeholder="e.g. Box fit white tee from Uniqlo"></div>
+              <div clas
