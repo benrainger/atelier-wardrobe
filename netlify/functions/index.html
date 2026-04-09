@@ -59,4 +59,143 @@
           <div class="input-section active" id="tab-desc">
             <div class="form-row">
               <div class="form-group"><label>Item name / description</label><input type="text" id="desc-name" placeholder="e.g. Box fit white tee from Uniqlo"></div>
-              <div clas
+              <div class="form-group"><label>Category</label>
+                <select id="desc-cat">
+                  <option value="">Select category</option>
+                  <optgroup label="Tops"><option>T-Shirt</option><option>Shirt</option><option>Knitwear</option><option>Hoodie</option></optgroup>
+                  <optgroup label="Outerwear"><option>Jacket</option><option>Coat</option></optgroup>
+                  <optgroup label="Bottoms"><option>Trousers</option><option>Jeans</option><option>Shorts</option></optgroup>
+                  <optgroup label="Footwear"><option>Sneakers</option><option>Boots</option><option>Loafers</option><option>Sandals</option></optgroup>
+                  <optgroup label="Headwear"><option>Baseball Cap</option><option>Bucket Hat</option><option>Beanie</option><option>Hat</option></optgroup>
+                  <optgroup label="Other"><option>Accessories</option><option>Other</option></optgroup>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Colour</label><input type="text" id="desc-color" placeholder="e.g. White, Navy, Off-white"></div>
+              <div class="form-group"><label>Fit / Style notes</label><input type="text" id="desc-notes" placeholder="e.g. Relaxed, slim, oversized"></div>
+            </div>
+            <button class="btn-primary" onclick="addItemFromDesc()">Add to Wardrobe</button>
+          </div>
+          <div class="input-section" id="tab-url">
+            <div class="form-row"><div class="form-group" style="grid-column:1/-1;"><label>Product URL</label><input type="url" id="url-link" placeholder="https://www.uniqlo.com/..."></div></div>
+            <div class="form-row">
+              <div class="form-group"><label>Item name</label><input type="text" id="url-name" placeholder="e.g. Uniqlo Box Tee — White"></div>
+              <div class="form-group"><label>Category</label>
+                <select id="url-cat">
+                  <option value="">Select category</option>
+                  <optgroup label="Tops"><option>T-Shirt</option><option>Shirt</option><option>Knitwear</option><option>Hoodie</option></optgroup>
+                  <optgroup label="Outerwear"><option>Jacket</option><option>Coat</option></optgroup>
+                  <optgroup label="Bottoms"><option>Trousers</option><option>Jeans</option><option>Shorts</option></optgroup>
+                  <optgroup label="Footwear"><option>Sneakers</option><option>Boots</option><option>Loafers</option><option>Sandals</option></optgroup>
+                  <optgroup label="Headwear"><option>Baseball Cap</option><option>Bucket Hat</option><option>Beanie</option><option>Hat</option></optgroup>
+                  <optgroup label="Other"><option>Accessories</option><option>Other</option></optgroup>
+                </select>
+              </div>
+            </div>
+            <button class="btn-primary" onclick="addItemFromUrl()">Add to Wardrobe</button>
+          </div>
+          <div class="input-section" id="tab-photo">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Photo</label>
+                <div class="upload-zone" onclick="document.getElementById('photo-upload').click()">
+                  <div class="upload-icon">📷</div>
+                  <div>Click to upload a photo</div>
+                  <div style="font-size:11px;margin-top:4px;color:var(--muted)">JPG, PNG, WEBP</div>
+                </div>
+                <input type="file" id="photo-upload" accept="image/*" onchange="handlePhotoUpload(event)">
+                <div id="photo-preview" style="display:none;margin-top:8px;"><img id="photo-preview-img" class="preview-img" alt="preview"></div>
+              </div>
+              <div class="form-group">
+                <label>Item name</label><input type="text" id="photo-name" placeholder="e.g. Black overshirt" style="margin-bottom:12px;">
+                <label>Category</label>
+                <select id="photo-cat">
+                  <option value="">Select category</option>
+                  <optgroup label="Tops"><option>T-Shirt</option><option>Shirt</option><option>Knitwear</option><option>Hoodie</option></optgroup>
+                  <optgroup label="Outerwear"><option>Jacket</option><option>Coat</option></optgroup>
+                  <optgroup label="Bottoms"><option>Trousers</option><option>Jeans</option><option>Shorts</option></optgroup>
+                  <optgroup label="Footwear"><option>Sneakers</option><option>Boots</option><option>Loafers</option><option>Sandals</option></optgroup>
+                  <optgroup label="Headwear"><option>Baseball Cap</option><option>Bucket Hat</option><option>Beanie</option><option>Hat</option></optgroup>
+                  <optgroup label="Other"><option>Accessories</option><option>Other</option></optgroup>
+                </select>
+                <label style="margin-top:10px;">Colour</label><input type="text" id="photo-color" placeholder="e.g. Black">
+              </div>
+            </div>
+            <button class="btn-primary" onclick="addItemFromPhoto()">Add to Wardrobe</button>
+          </div>
+        </div>
+        <div class="filters">
+          <span class="filter-label">FILTER:</span>
+          <button class="filter-btn active" onclick="filterWardrobe('all', this)">All</button>
+          <button class="filter-btn" onclick="filterWardrobe('T-Shirt', this)">Tees</button>
+          <button class="filter-btn" onclick="filterWardrobe('Shirt', this)">Shirts</button>
+          <button class="filter-btn" onclick="filterWardrobe('Knitwear', this)">Knitwear</button>
+          <button class="filter-btn" onclick="filterWardrobe('Jacket', this)">Jackets</button>
+          <button class="filter-btn" onclick="filterWardrobe('Coat', this)">Coats</button>
+          <button class="filter-btn" onclick="filterWardrobe('Trousers', this)">Trousers</button>
+          <button class="filter-btn" onclick="filterWardrobe('Jeans', this)">Jeans</button>
+          <button class="filter-btn" onclick="filterWardrobe('Shorts', this)">Shorts</button>
+          <button class="filter-btn" onclick="filterWardrobe('Sneakers', this)">Sneakers</button>
+          <button class="filter-btn" onclick="filterWardrobe('Boots', this)">Boots</button>
+          <button class="filter-btn" onclick="filterWardrobe('headwear', this)">Hats</button>
+        </div>
+        <div class="wardrobe-grid" id="wardrobe-grid">
+          <div class="empty-state" id="empty-wardrobe" style="grid-column:1/-1;">
+            <div class="e-icon">🧥</div>
+            <p>Your wardrobe is empty</p>
+            <span>Add some items above to get started</span>
+          </div>
+        </div>
+      </div>
+      <div class="view" id="view-outfit">
+        <div class="wardrobe-header">
+          <div class="page-title">OUTFIT BUILDER</div>
+          <div class="page-sub">Pick a piece and an occasion — swipe through your AI-styled looks.</div>
+        </div>
+        <div class="outfit-builder-wrap">
+          <div class="sidebar-panel">
+            <div>
+              <div class="panel-label">ANCHOR PIECE <span class="count-badge" id="item-count">0 items</span></div>
+              <div class="item-selector" id="item-selector">
+                <div class="empty-state" style="padding:20px;">
+                  <div class="e-icon" style="font-size:28px;">👆</div>
+                  <p style="font-size:13px;">No items yet</p>
+                  <span style="font-size:11px;">Add clothes in Wardrobe first</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="panel-label">OCCASION</div>
+              <div class="occasion-block">
+                <div class="occasion-chips">
+                  <button class="occasion-chip active" onclick="setOccasion(this,'casual')">Casual</button>
+                  <button class="occasion-chip" onclick="setOccasion(this,'smart casual')">Smart casual</button>
+                  <button class="occasion-chip" onclick="setOccasion(this,'date night')">Date night</button>
+                  <button class="occasion-chip" onclick="setOccasion(this,'work')">Work</button>
+                  <button class="occasion-chip" onclick="setOccasion(this,'going out')">Going out</button>
+                  <button class="occasion-chip" id="custom-chip" onclick="toggleCustomOccasion()">Custom…</button>
+                </div>
+                <div class="occasion-custom-row" id="custom-row">
+                  <input type="text" class="occasion-custom-input" id="custom-occasion-input" placeholder="e.g. Festival, Beach day…" onkeydown="if(event.key==='Enter') confirmCustomOccasion()">
+                  <button class="occasion-custom-set" onclick="confirmCustomOccasion()">Set</button>
+                </div>
+                <div class="occasion-active" id="occasion-active"></div>
+              </div>
+            </div>
+            <button class="btn-primary" style="width:100%;" onclick="generateOutfit()">Generate Looks →</button>
+          </div>
+          <div class="outfits-area" id="outfits-area">
+            <div class="outfits-placeholder">
+              <div class="ph-icon">✦</div>
+              <p>Your looks will appear here</p>
+              <span>Select a piece, choose an occasion, then hit Generate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
